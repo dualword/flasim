@@ -13,8 +13,14 @@ unix:LIBS += -lIrrlicht
 DESTDIR = ../bin
 
 HEADERS += \
-    ../src/FlaSimApp.hpp
+    ../src/FlaSimApp.hpp \
+    ../src/FireUnit.hpp \
+    ../src/Globals.hpp \
+    ../src/TurretCamAnimator.hpp
 
 SOURCES += \
     ../src/FlaSimApp.cpp \
-    ../src/main.cpp
+    ../src/main.cpp \
+    ../src/FireUnit.cpp \
+    ../src/Globals.cpp \
+    ../src/TurretCamAnimator.cpp
