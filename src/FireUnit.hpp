@@ -10,11 +10,13 @@ public:
     ~FireUnit();
 
     bool OnEvent(const irr::SEvent&);
+    void draw();
 
 private:
     irr::scene::ICameraSceneNode *cam;
     irr::scene::ISceneNode *turretElevation, *turretAzimuth;
     irr::scene::ISceneNodeAnimator *turretCamAnimator;
+    irr::video::ITexture *crosshair;
 };
 
 #endif // FIREUNIT_HPP

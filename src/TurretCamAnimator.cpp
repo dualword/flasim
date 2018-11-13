@@ -25,7 +25,7 @@ void TurretCamAnimator::animateNode(scene::ISceneNode* node, u32)
     absTrans.rotateVect(nodeUpVector, core::vector3df(0.f, 1.f, 0.f));
     absTrans.transformVect(nodeTarget, core::vector3df(0.f, 0.f, 100.f));
 
-    node->setPosition(parent->getAbsolutePosition() + core::vector3df(0.f, 1.65f, 0.f));
+    node->setPosition(parent->getAbsolutePosition() + core::vector3df(0.f, 1.75f, 0.f));
     if (node->getType() == scene::ESNT_CAMERA)
     {
         static_cast<scene::ICameraSceneNode*>(node)->setUpVector(nodeUpVector);

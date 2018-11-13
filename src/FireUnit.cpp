@@ -27,7 +27,11 @@ FireUnit::FireUnit()
     jet->addAnimator(a);
     a->drop();
 
+    crosshair = Globals::getVideoDriver()->getTexture("../res/crosshair.png");
 
+    auto b = Globals::getSceneManager()->addBillboardSceneNode(turretElevation, dimension2df(1.f, 1.f), vector3df(.14f, 1.5f, 1.89f));
+    b->setMaterialTexture(0, Globals::getVideoDriver()->getTexture("../res/mflash.png"));
+    b->setMaterialType(video::EMT_TRANSPARENT_ALPHA_CHANNEL_REF);
 }
 
 FireUnit::~FireUnit()
@@ -95,4 +99,12 @@ bool FireUnit::OnEvent(const SEvent& e)
     }
 
     return false;
+}
+
+
+void FireUnit::draw()
+{
+    auto& res = Globals::getVideoDriver()->getScreenSize();
+
+    Globals::getVideoDriver()->draw2DImage(crosshair, position2di(res.Width / 2 - 128, res.Height / 2 - 128), recti(0, 0, 256, 256), nullptr, video::SColor(255,255,255,255), true );
 }
