@@ -7,6 +7,8 @@ using namespace irr;
 using namespace irr::core;
 
 FireUnit::FireUnit()
+    : aziTurnCoeffSmooth(0.f)
+    , elevTurnCoeffSmooth(0.f)
 {
     turretAzimuth = Globals::getSceneManager()->addEmptySceneNode();
     turretElevation = Globals::getSceneManager()->addMeshSceneNode(Globals::getSceneManager()->getMesh("../res/guns.obj"), turretAzimuth);
@@ -72,8 +74,11 @@ bool FireUnit::OnEvent(const SEvent& e)
             // sec trigger released
         }
 
+        aziTurnCoeffSmooth = aziTurnCoeffSmooth * .95f + aziTurnCoeff * .05f;
+        elevTurnCoeffSmooth = elevTurnCoeffSmooth * .95f + elevTurnCoeff * .05f;
+
         vector3df rot = turretAzimuth->getRotation();
-        rot.Y -= 1.f * aziTurnCoeff;
+        rot.Y -= 1.f * aziTurnCoeffSmooth;
         if (rot.Y > 360.f)
             rot.Y -= 360.f;
 
@@ -83,7 +88,7 @@ bool FireUnit::OnEvent(const SEvent& e)
         turretAzimuth->setRotation(rot);
 
         rot = turretElevation->getRotation();
-        rot.X += 1.f * elevTurnCoeff;
+        rot.X += 1.f * elevTurnCoeffSmooth;
         if (rot.X > 5.f)
             rot.X = 5.f;
 

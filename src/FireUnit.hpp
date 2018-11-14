@@ -15,6 +15,8 @@ private:
     irr::scene::ICameraSceneNode *cam;
     irr::scene::ISceneNode *turretElevation, *turretAzimuth;
     irr::scene::ISceneNodeAnimator *turretCamAnimator;
+
+    irr::f32 aziTurnCoeffSmooth, elevTurnCoeffSmooth;
 };
 
 #endif // FIREUNIT_HPP
