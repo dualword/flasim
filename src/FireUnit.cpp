@@ -1,14 +1,21 @@
 #include "FireUnit.hpp"
 
+#include <iostream>
+#include <cAudio/cAudio.h>
+
 #include "Globals.hpp"
+#include "Dispatcher.hpp"
 #include "TurretCamAnimator.hpp"
 
+using namespace std;
 using namespace irr;
 using namespace irr::core;
 
 FireUnit::FireUnit()
     : aziTurnCoeffSmooth(0.f)
     , elevTurnCoeffSmooth(0.f)
+    , flashCount(0)
+    , fireBtnPressed(false)
 {
     turretAzimuth = Globals::getSceneManager()->addEmptySceneNode();
     turretElevation = Globals::getSceneManager()->addMeshSceneNode(Globals::getSceneManager()->getMesh("../res/guns.obj"), turretAzimuth);
@@ -19,21 +26,21 @@ FireUnit::FireUnit()
     cam->setFarValue(4000.f);
     cam->addAnimator(turretCamAnimator);
 
-    auto jet = Globals::getSceneManager()->addMeshSceneNode(Globals::getSceneManager()->getMesh("../res/SU35S.obj"));
-    jet->setPosition(vector3df(25.f, 0.f, 0.f));
-    auto a = Globals::getSceneManager()->createFlyStraightAnimator(vector3df(100.f, 100.f, -1000.f),
-                                                          vector3df(100.f, 100.f, 1000.f),
-                                                          16000,
-                                                          true,
-                                                          false);
-    jet->addAnimator(a);
-    a->drop();
-
     crosshair = Globals::getVideoDriver()->getTexture("../res/crosshair.png");
 
-    auto b = Globals::getSceneManager()->addBillboardSceneNode(turretElevation, dimension2df(1.f, 1.f), vector3df(.14f, 1.5f, 1.89f));
-    b->setMaterialTexture(0, Globals::getVideoDriver()->getTexture("../res/mflash.png"));
-    b->setMaterialType(video::EMT_TRANSPARENT_ALPHA_CHANNEL_REF);
+    mflashR = Globals::getSceneManager()->addBillboardSceneNode(turretElevation, dimension2df(1.f, 1.f), vector3df(.14f, 1.5f, 1.89f));
+    mflashL = Globals::getSceneManager()->addBillboardSceneNode(turretElevation, dimension2df(1.f, 1.f), vector3df(-.14f, 1.5f, 1.89f));
+    mflashR->setMaterialTexture(0, Globals::getVideoDriver()->getTexture("../res/mflash.png"));
+    mflashR->setMaterialType(video::EMT_TRANSPARENT_ALPHA_CHANNEL_REF);
+    mflashR->setMaterialFlag(video::EMF_LIGHTING, false);
+    mflashL->setMaterialTexture(0, Globals::getVideoDriver()->getTexture("../res/mflash.png"));
+    mflashL->setMaterialType(video::EMT_TRANSPARENT_ALPHA_CHANNEL_REF);
+    mflashL->setMaterialFlag(video::EMF_LIGHTING, false);
+    mflashL->setVisible(false);
+    mflashR->setVisible(false);
+
+    fireSound = Globals::getAudioManager()->create("fireSound", "../res/gunburst.wav", false);
+
 }
 
 FireUnit::~FireUnit()
@@ -60,13 +67,28 @@ bool FireUnit::OnEvent(const SEvent& e)
         if (fabs(aziTurnCoeff) < DEAD_ZONE)
             aziTurnCoeff = 0.f;
 
-        if (e.JoystickEvent.IsButtonPressed(1))
+        if (e.JoystickEvent.IsButtonPressed(0))
         {
-            // fire trigger pressed
+            if (!fireBtnPressed)
+            {
+                shotline.start = cam->getAbsolutePosition();
+                shotline.end = cam->getTarget() - shotline.start;
+                shotline.end.normalize();
+                shotline.end *= 4000.f;
+                fireSound->play2d();
+                /*vector3df lineEnd = cam->getTarget();
+            lineEnd.normalize();
+            lineEnd += 4000.f;
+            shotline.end = shotline.start + lineEnd;*/
+
+                Globals::getDispatcher()->evalShot(shotline);
+                fireBtnPressed = true;
+                flashCount = 16;
+            }
         }
         else
         {
-            // fire trigger released
+            fireBtnPressed = false;
         }
 
         if (e.JoystickEvent.IsButtonPressed(2))
@@ -109,7 +131,33 @@ bool FireUnit::OnEvent(const SEvent& e)
 
 void FireUnit::draw()
 {
-    auto& res = Globals::getVideoDriver()->getScreenSize();
+    auto drv = Globals::getVideoDriver();
+    auto& res = drv->getScreenSize();
 
-    Globals::getVideoDriver()->draw2DImage(crosshair, position2di(res.Width / 2 - 128, res.Height / 2 - 128), recti(0, 0, 256, 256), nullptr, video::SColor(255,255,255,255), true );
+    drv->draw2DImage(crosshair, position2di(res.Width / 2 - 128, res.Height / 2 - 128), recti(0, 0, 256, 256), nullptr, video::SColor(255,255,255,255), true );
+
+    video::SMaterial matA;
+    matA.AmbientColor = video::SColor(255, 255, 0, 0);
+    matA.DiffuseColor = video::SColor(255, 255, 0, 0);
+    matA.ColorMaterial = video::ECM_NONE;
+    matA.AntiAliasing = video::EAAM_FULL_BASIC;
+    matA.Lighting = false;
+    matA.Thickness = 1.5f;
+    matA.MaterialType = video::EMT_TRANSPARENT_ALPHA_CHANNEL;
+    drv->setMaterial(matA);
+
+    if (flashCount > 0)
+    {
+        mflashL->setVisible(flashCount % 4 == 2);
+        mflashR->setVisible(flashCount % 4 == 0);
+        flashCount--;
+    }
+    else
+    {
+        mflashL->setVisible(false);
+        mflashR->setVisible(false);
+    }
+
+    //drv->draw3DLine(shotline.start, shotline.end);
+    //cout << tgt.X << ' ' << tgt.Y << ' ' << tgt.Z << endl;
 }

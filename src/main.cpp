@@ -1,9 +1,12 @@
 #include "FlaSimApp.hpp"
+#include "Globals.hpp"
 
 int main()
 {
-    FlaSimApp a;
-    a.execute();
+    FlaSimApp *a = new FlaSimApp();
+    a->execute();
 
+    delete a;
+    Globals::shutdown();
     return 0;
 }

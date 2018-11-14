@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "Globals.hpp"
+#include "Dispatcher.hpp"
 
 using namespace std;
 using namespace irr;
@@ -46,6 +47,7 @@ void FlaSimApp::execute()
 {
     while (dev->run())
     {
+        Globals::getDispatcher()->execute();
         drv->beginScene(true, true, SColor(255, 128, 128, 128));
         sman->drawAll();
         drawScreenSpace();
@@ -56,6 +58,24 @@ void FlaSimApp::execute()
 
 bool FlaSimApp::OnEvent(const irr::SEvent &e)
 {
+    if (e.EventType == EET_KEY_INPUT_EVENT)
+    {
+        if (e.KeyInput.Key == KEY_F12)
+        {
+            dev->closeDevice();
+            return true;
+        }
+        if (e.KeyInput.Key == KEY_F9)
+        {
+            Globals::getDispatcher()->start();
+            return true;
+        }
+        if (e.KeyInput.Key == KEY_F10)
+        {
+            Globals::getDispatcher()->stop();
+            return true;
+        }
+    }
     return fireUnit.OnEvent(e);
 }
 
