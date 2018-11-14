@@ -49,6 +49,7 @@ void FlaSimApp::execute()
         drv->beginScene(true, true, SColor(255, 128, 128, 128));
         sman->drawAll();
         drawScreenSpace();
+        fireUnit.draw();
         drv->endScene();
     }
 }
