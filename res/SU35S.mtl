@@ -1,73 +1,8 @@
-# Blender MTL File: 'SU35S.blend'
-# Material Count: 36
-
-newmtl Gum
-Ns 23.529412
-Ka 1.000000 1.000000 1.000000
-Kd 0.015136 0.015136 0.015136
-Ks 0.021014 0.021014 0.021014
-Ke 0.000000 0.000000 0.000000
-Ni 1.000000
-d 1.000000
-illum 2
-
-newmtl Killermachine01
-Ns 92.156863
-Ka 1.000000 1.000000 1.000000
-Kd 0.512000 0.512000 0.512000
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd C:/Users/Psychedelic/Desktop/FGear.png
-
-newmtl Killermachine01_NONE
-Ns 92.156863
-Ka 1.000000 1.000000 1.000000
-Kd 0.512000 0.512000 0.512000
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd C:/Users/Psychedelic/Desktop/FGear.png
-
-newmtl KillermachineSu
-Ns 92.156863
-Ka 1.000000 1.000000 1.000000
-Kd 0.512000 0.512000 0.512000
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd C:/Users/Psychedelic/Desktop/FGear.png
-
-newmtl Material_#145
-Ns 92.156863
-Ka 1.000000 1.000000 1.000000
-Kd 0.512000 0.512000 0.512000
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd C:/Users/Psychedelic/Desktop/FGear.png
-
-newmtl Steel
-Ns 190.196078
-Ka 0.200000 0.200000 0.200000
-Kd 0.088054 0.088054 0.088054
-Ks 0.250000 0.250000 0.250000
-Ke 0.000000 0.000000 0.000000
-Ni 1.000000
-d 1.000000
-illum 3
-map_Kd C:/Users/Psychedelic/Desktop/FGear.png
+# Blender MTL File: 'None'
+# Material Count: 25
 
 newmtl capony
-Ns 96.078431
+Ns 94.117647
 Ka 1.000000 1.000000 1.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.500000 0.500000 0.500000
@@ -79,7 +14,7 @@ map_Kd C:/Users/Psychedelic/Desktop/Tex_23119_0.png
 map_Ks C:/Users/Psychedelic/Desktop/Tex_23119_0.png
 
 newmtl fuse_back
-Ns 96.078431
+Ns 94.117647
 Ka 1.000000 1.000000 1.000000
 Kd 0.510968 0.510968 0.510968
 Ks 0.500000 0.500000 0.500000
@@ -87,20 +22,8 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd C:/Users/Psychedelic/Archive/Blender/Air Force (2013) by Teschmacher/Su27_tex02_2013.bmp.png
-map_Ks C:/Users/Psychedelic/Archive/Blender/Air Force (2013) by Teschmacher/Su27_tex02_2013.bmp.png
-
-newmtl fuse_back_NONE
-Ns 96.078431
-Ka 1.000000 1.000000 1.000000
-Kd 0.510968 0.510968 0.510968
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd C:/Users/Psychedelic/Archive/Blender/Air Force (2013) by Teschmacher/Su27_tex02_2013.bmp.png
-map_Ks C:/Users/Psychedelic/Archive/Blender/Air Force (2013) by Teschmacher/Su27_tex02_2013.bmp.png
+map_Kd Teschmacher/Su27_tex02_2013.bmp.png
+map_Ks Teschmacher/Su27_tex02_2013.bmp.png
 
 newmtl glass
 Ns 978.431373
@@ -114,7 +37,7 @@ illum 2
 refl C:/Users/Psychedelic/Desktop/Raptor/cloud2.png
 
 newmtl glass1
-Ns 939.215686
+Ns 937.254902
 Ka 1.000000 1.000000 1.000000
 Kd 0.039217 0.045141 0.053445
 Ks 1.000000 1.000000 1.000000
@@ -136,30 +59,8 @@ illum 2
 map_Kd C:/Users/Psychedelic/Desktop/Raptor/cloud2.png
 refl C:/Users/Psychedelic/Desktop/Raptor/cloud2.png
 
-newmtl gum
-Ns 17.647059
-Ka 1.000000 1.000000 1.000000
-Kd 0.021768 0.021768 0.021768
-Ks 0.008694 0.008694 0.008694
-Ke 0.000000 0.000000 0.000000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd C:/Users/Psychedelic/Archive/Blender/Air Force (2013) by Teschmacher/Su27_tex02_2013.bmp.png
-
-newmtl gum_NONE
-Ns 17.647059
-Ka 1.000000 1.000000 1.000000
-Kd 0.021768 0.021768 0.021768
-Ks 0.008694 0.008694 0.008694
-Ke 0.000000 0.000000 0.000000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd C:/Users/Psychedelic/Archive/Blender/Air Force (2013) by Teschmacher/Su27_tex02_2013.bmp.png
-
 newmtl keel_stab
-Ns 96.078431
+Ns 94.117647
 Ka 1.000000 1.000000 1.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.500000 0.500000 0.500000
@@ -167,11 +68,11 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd C:/Users/Psychedelic/Archive/Blender/Air Force (2013) by Teschmacher/Su27_tex06_2013.bmp.png
-map_Ks C:/Users/Psychedelic/Archive/Blender/Air Force (2013) by Teschmacher/Su27_tex06_2013.bmp.png
+map_Kd Teschmacher/Su27_tex06_2013.bmp.png
+map_Ks Teschmacher/Su27_tex06_2013.bmp.png
 
 newmtl kreslo
-Ns 96.078431
+Ns 94.117647
 Ka 1.000000 1.000000 1.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.500000 0.500000 0.500000
@@ -183,7 +84,7 @@ map_Kd C:/Users/Psychedelic/Archive/Blender/PNG/su-27_k36.bmp.png
 map_Ks C:/Users/Psychedelic/Archive/Blender/PNG/su-27_k36.bmp.png
 
 newmtl lamp
-Ns 96.078431
+Ns 94.117647
 Ka 1.000000 1.000000 1.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.500000 0.500000 0.500000
@@ -205,7 +106,7 @@ d 0.700000
 illum 2
 
 newmtl misc
-Ns 96.078431
+Ns 94.117647
 Ka 1.000000 1.000000 1.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.500000 0.500000 0.500000
@@ -217,7 +118,7 @@ map_Kd C:/Users/Psychedelic/Desktop/Flanker-E/PNG/su27_tex07.bmp.png
 map_Ks C:/Users/Psychedelic/Desktop/Flanker-E/PNG/su27_tex07.bmp.png
 
 newmtl nose
-Ns 96.078431
+Ns 94.117647
 Ka 1.000000 1.000000 1.000000
 Kd 0.242558 0.242558 0.242558
 Ks 0.500000 0.500000 0.500000
@@ -229,7 +130,7 @@ map_Kd C:/Users/Psychedelic/Desktop/Flanker-E/PNG/su27_tex07.bmp.png
 map_Ks C:/Users/Psychedelic/Desktop/Flanker-E/PNG/su27_tex07.bmp.png
 
 newmtl nose1
-Ns 96.078431
+Ns 94.117647
 Ka 1.000000 1.000000 1.000000
 Kd 0.510968 0.510968 0.510968
 Ks 0.500000 0.500000 0.500000
@@ -241,7 +142,7 @@ map_Kd C:/Users/Psychedelic/Desktop/Su33_tex01.bmp.png
 map_Ks C:/Users/Psychedelic/Desktop/Su33_tex01.bmp.png
 
 newmtl nose1_1
-Ns 96.078431
+Ns 94.117647
 Ka 1.000000 1.000000 1.000000
 Kd 0.513600 0.513600 0.513600
 Ks 0.500000 0.500000 0.500000
@@ -249,11 +150,11 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd /tmp/Air Force (2013) by Teschmacher/Originals/Su27_tex01_2013.bmp.png
-map_Ks /tmp/Air Force (2013) by Teschmacher/Originals/Su27_tex01_2013.bmp.png
+map_Kd Teschmacher/Originals/Su27_tex01_2013.bmp.png
+map_Ks Teschmacher/Originals/Su27_tex01_2013.bmp.png
 
 newmtl numberL
-Ns 96.078431
+Ns 94.117647
 Ka 1.000000 1.000000 1.000000
 Kd 0.510968 0.510968 0.510968
 Ks 0.000000 0.000000 0.000000
@@ -265,7 +166,7 @@ map_Kd C:/Users/Psychedelic/Archive/Blender/PNG/Su-27_numbers_red.png
 map_d C:/Users/Psychedelic/Archive/Blender/PNG/Su-27_numbers_red.png
 
 newmtl numberR
-Ns 96.078431
+Ns 94.117647
 Ka 1.000000 1.000000 1.000000
 Kd 0.510968 0.510968 0.510968
 Ks 0.000000 0.000000 0.000000
@@ -278,7 +179,7 @@ map_Ka C:/Users/Psychedelic/Archive/Blender/PNG/Su-27_numbers_red.png
 map_d C:/Users/Psychedelic/Archive/Blender/PNG/Su-27_numbers_red.png
 
 newmtl pilon
-Ns 96.078431
+Ns 94.117647
 Ka 1.000000 1.000000 1.000000
 Kd 0.515325 0.515325 0.515325
 Ks 0.500000 0.500000 0.500000
@@ -290,7 +191,7 @@ map_Kd C:/Users/Psychedelic/Archive/Blender/PNG/su27_pylon.bmp.png
 map_Ks C:/Users/Psychedelic/Archive/Blender/PNG/su27_pylon.bmp.png
 
 newmtl pilon2
-Ns 96.078431
+Ns 94.117647
 Ka 1.000000 1.000000 1.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.500000 0.500000 0.500000
@@ -302,7 +203,7 @@ map_Kd C:/Users/Psychedelic/Archive/Blender/PNG/Su27_pylon2.png
 map_Ks C:/Users/Psychedelic/Archive/Blender/PNG/Su27_pylon2.png
 
 newmtl pilot
-Ns 96.078431
+Ns 94.117647
 Ka 1.000000 1.000000 1.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.500000 0.500000 0.500000
@@ -339,7 +240,7 @@ map_Ka C:/Users/Psychedelic/Desktop/Flanker-E/PNG/Tex_3306_0.png
 map_Ks C:/Users/Psychedelic/Desktop/Flanker-E/PNG/Tex_3306_0.png
 
 newmtl sopla
-Ns 96.078431
+Ns 94.117647
 Ka 1.000000 1.000000 1.000000
 Kd 0.515325 0.515325 0.515325
 Ks 0.500000 0.500000 0.500000
@@ -354,7 +255,7 @@ map_Ks C:/Users/Psychedelic/Archive/Blender/PNG/Su-27_detail.png
 map_d C:/Users/Psychedelic/Desktop/Flanker-E/PNG/Su-27_detail_nrm.tif
 
 newmtl vozduh
-Ns 96.078431
+Ns 94.117647
 Ka 1.000000 1.000000 1.000000
 Kd 0.513684 0.513684 0.513684
 Ks 0.500000 0.500000 0.500000
@@ -362,35 +263,11 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd C:/Users/Psychedelic/Desktop/Air Force (2013) by Teschmacher/Su27_tex05_2013.bmp.png
-map_Ks C:/Users/Psychedelic/Desktop/Air Force (2013) by Teschmacher/Su27_tex05_2013.bmp.png
-
-newmtl wing_R
-Ns 96.078431
-Ka 1.000000 1.000000 1.000000
-Kd 0.513684 0.513684 0.513684
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd C:/Users/Psychedelic/Desktop/Flanker-E/Air Force (2013) by Teschmacher/Su27_tex03_2013.bmp.png
-map_Ks C:/Users/Psychedelic/Desktop/Flanker-E/Air Force (2013) by Teschmacher/Su27_tex03_2013.bmp.png
-
-newmtl wing_R_FGear.png
-Ns 96.078431
-Ka 1.000000 1.000000 1.000000
-Kd 0.513684 0.513684 0.513684
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd C:/Users/Psychedelic/Desktop/FGear.png
-map_Ks C:/Users/Psychedelic/Desktop/Flanker-E/Air Force (2013) by Teschmacher/Su27_tex03_2013.bmp.png
+map_Kd Teschmacher/Su27_tex05_2013.bmp.png
+map_Ks Teschmacher/Su27_tex05_2013.bmp.png
 
 newmtl wing_R_Su27_tex03_2013.bmp.png
-Ns 96.078431
+Ns 94.117647
 Ka 1.000000 1.000000 1.000000
 Kd 0.513684 0.513684 0.513684
 Ks 0.500000 0.500000 0.500000
@@ -398,11 +275,11 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd C:/Users/Psychedelic/Desktop/Flanker-E/Air Force (2013) by Teschmacher/Su27_tex03_2013.bmp.png
-map_Ks C:/Users/Psychedelic/Desktop/Flanker-E/Air Force (2013) by Teschmacher/Su27_tex03_2013.bmp.png
+map_Kd Teschmacher/Su27_tex03_2013.bmp.png
+map_Ks Teschmacher/Su27_tex03_2013.bmp.png
 
 newmtl wing_l
-Ns 96.078431
+Ns 94.117647
 Ka 1.000000 1.000000 1.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.500000 0.500000 0.500000
@@ -410,8 +287,8 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd C:/Users/Psychedelic/Desktop/Flanker-E/Air Force (2013) by Teschmacher/Su27_tex04_2013.bmp.png
-map_Ks C:/Users/Psychedelic/Desktop/Flanker-E/Air Force (2013) by Teschmacher/Su27_tex04_2013.bmp.png
+map_Kd Teschmacher/Su27_tex04_2013.bmp.png
+map_Ks Teschmacher/Su27_tex04_2013.bmp.png
 
 newmtl wing_r
 Ns 92.156863

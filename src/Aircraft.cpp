@@ -1,30 +1,39 @@
 #include "Aircraft.hpp"
 
 #include <iostream>
-
+#include <cAudio/cAudio.h>
 #include "Globals.hpp"
+
 
 
 
 using namespace irr;
 using namespace irr::core;
 
-Aircraft::Aircraft()
+Aircraft::Aircraft(const line3df &flightLine, u32 flightTimeMillis)
+    : flightDuration(flightTimeMillis)
+    , flightStarted(Globals::getDevice()->getTimer()->getRealTime())
 {
     model = Globals::getSceneManager()->addMeshSceneNode(Globals::getSceneManager()->getMesh("../res/SU35S.obj"));
     model->setPosition(vector3df(25.f, 0.f, 0.f));
-    a = Globals::getSceneManager()->createFlyStraightAnimator(vector3df(100.f, 100.f, -1000.f),
-                                                          vector3df(100.f, 100.f, 1000.f),
-                                                          32000,
-                                                          false,
-                                                          false);
+    a = Globals::getSceneManager()->createFlyStraightAnimator(flightLine.start,
+                                                              flightLine.end,
+                                                              flightTimeMillis,
+                                                              false,
+                                                              false);
+
+    auto dvec = (flightLine.end - flightLine.start).normalize();
+    f64 rotBy = vector2df(dvec.X, dvec.Z).getAngleTrig();
+    model->setRotation(vector3df(0.f, -rotBy, 0.f));
 
     model->addAnimator(a);
-    std::cout << "Aircraft" << std::endl;
+    flybySound = Globals::getAudioManager()->create("flybySound", "../res/flyby.wav", false);
+    //std::cout << "Aircraft from " << flightTimeMillis << ' ' << flightLine.start.Y << " to " << flightLine.end.X << ' ' << flightLine.end.Y << " at " << flightLine.start.Z << std::endl;
 }
 
 Aircraft::~Aircraft()
 {
+    a->drop();
     Globals::getSceneManager()->addToDeletionQueue(model);
     std::cout << "~Aircraft" << std::endl;
 }
@@ -54,4 +63,26 @@ bool Aircraft::evalShot(const irr::core::line3df &shotline)
         healthy = false;
     }
     return hit;
+}
+
+void Aircraft::update(u32 curMS)
+{
+    if (!flybySound->isPlaying())
+    {
+
+        u32 curTime = curMS;
+        curTime -= flightStarted;
+        if (curTime > flightDuration / 2 - 4000 && curTime < flightDuration / 2)
+        {
+            auto p = model->getAbsolutePosition();
+            flybySound->play3d(cAudio::cVector3(p.X, p.Y, p.Z));
+            //std::cout << "PLAY!" << std::endl;
+           // flybySound->play2d();
+        }
+    }
+    else
+    {
+        auto p = model->getAbsolutePosition();
+        flybySound->move(cAudio::cVector3(p.X, p.Y, p.Z));
+    }
 }

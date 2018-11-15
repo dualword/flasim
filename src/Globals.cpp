@@ -15,6 +15,7 @@ Globals::Globals()
     sman = dev->getSceneManager();
     dispatcher = new Dispatcher();
     audioManager = cAudio::createAudioManager(true);
+    font = dev->getGUIEnvironment()->getFont("../res/fontlucida.png");
 }
 
 Globals::~Globals()
@@ -68,4 +69,12 @@ Dispatcher* Globals::getDispatcher()
         instance = new Globals();
 
     return instance->dispatcher;
+}
+
+gui::IGUIFont *Globals::getFont()
+{
+    if (!instance)
+        instance = new Globals();
+
+    return instance->font;
 }

@@ -15,6 +15,8 @@ public:
     ~FireUnit();
 
     bool OnEvent(const irr::SEvent&);
+    irr::u32 getRoundsRemaining() const;
+    bool isReloading() const;
     void draw();
 
 private:
@@ -26,8 +28,11 @@ private:
 
     irr::core::line3df shotline;
     irr::scene::IBillboardSceneNode *mflashL, *mflashR;
-    irr::u32 flashCount;
+    irr::u32 fireCount;
     bool fireBtnPressed;
+    irr::u32 stripsRemaining;
+    bool reloading;
+    irr::u32 reloadUntil;
 
     class cAudio::IAudioSource* fireSound;
 };

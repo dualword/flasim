@@ -18,6 +18,10 @@ namespace irr
     {
         class IVideoDriver;
     }
+    namespace gui
+    {
+    class IGUIFont;
+    }
 }
 
 
@@ -29,6 +33,7 @@ public:
     static class irr::video::IVideoDriver* getVideoDriver();
     static cAudio::IAudioManager* getAudioManager();
     static class Dispatcher* getDispatcher();
+    static class irr::gui::IGUIFont *getFont();
 
     static void shutdown();
 
@@ -42,5 +47,6 @@ private:
     class irr::video::IVideoDriver* drv;
     class cAudio::IAudioManager *audioManager;
     class Dispatcher *dispatcher;
+    class irr::gui::IGUIFont *font;
 };
 #endif // GLOBALS_HPP

@@ -24,6 +24,14 @@ FlaSimApp::FlaSimApp()
                              drv->getTexture("../res/sky0.jpg"),
                              drv->getTexture("../res/sky2.jpg")
                              );
+    auto t = sman->addTerrainSceneNode("../res/heightmap.png");
+    t->setScale(vector3df(1.f, .1f, 1.f));
+    auto move = t->getTerrainCenter();
+    move.Y += 10.f;
+    t->setPosition(-move);
+    t->setMaterialFlag(EMF_FOG_ENABLE, true);
+    t->setMaterialTexture(0, drv->getTexture("../res/detailmap.png"));
+    drv->setFog(video::SColor(0, 99, 122, 193), EFT_FOG_EXP, 100.f, 300.f);
 
     scene::ILightSceneNode *sun = sman->addLightSceneNode();
     sun->setLightType(ELT_DIRECTIONAL);
@@ -96,4 +104,11 @@ void FlaSimApp::drawScreenSpace()
     drv->draw3DLine(vector3df(0.f, 0.f, 0.f), vector3df(1.f, 0.f, 0.f), video::SColor(255, 255, 0, 0));
     drv->draw3DLine(vector3df(0.f, 0.f, 0.f), vector3df(0.f, 1.f, 0.f), video::SColor(255, 0, 255, 0));
     drv->draw3DLine(vector3df(0.f, 0.f, 0.f), vector3df(0.f, 0.f, 1.f), video::SColor(255, 0, 0, 255));
+
+    core::stringw info = L"RNDS REMAIN: ";
+    if (fireUnit.isReloading())
+        info += L"[RELOADING]";
+    else
+        info += fireUnit.getRoundsRemaining();
+    Globals::getFont()->draw(info, core::recti(10, 10, 100, 100), video::SColor(255, 255, 255, 255));
 }

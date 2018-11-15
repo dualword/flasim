@@ -21,4 +21,5 @@ private:
     Aircrafts aircrafts;
     bool active;
 
+    void dispatchAircraft();
 };

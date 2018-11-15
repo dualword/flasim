@@ -14,8 +14,10 @@ using namespace irr::core;
 FireUnit::FireUnit()
     : aziTurnCoeffSmooth(0.f)
     , elevTurnCoeffSmooth(0.f)
-    , flashCount(0)
+    , fireCount(0)
     , fireBtnPressed(false)
+    , stripsRemaining(5)
+    , reloading(false)
 {
     turretAzimuth = Globals::getSceneManager()->addEmptySceneNode();
     turretElevation = Globals::getSceneManager()->addMeshSceneNode(Globals::getSceneManager()->getMesh("../res/guns.obj"), turretAzimuth);
@@ -71,19 +73,13 @@ bool FireUnit::OnEvent(const SEvent& e)
         {
             if (!fireBtnPressed)
             {
-                shotline.start = cam->getAbsolutePosition();
-                shotline.end = cam->getTarget() - shotline.start;
-                shotline.end.normalize();
-                shotline.end *= 4000.f;
-                fireSound->play2d();
-                /*vector3df lineEnd = cam->getTarget();
-            lineEnd.normalize();
-            lineEnd += 4000.f;
-            shotline.end = shotline.start + lineEnd;*/
-
-                Globals::getDispatcher()->evalShot(shotline);
+                if (!reloading && stripsRemaining > 0 && fireCount == 0)
+                {
+                    fireSound->play2d();
+                    fireCount = 16;
+                    stripsRemaining--;
+                }
                 fireBtnPressed = true;
-                flashCount = 16;
             }
         }
         else
@@ -93,7 +89,11 @@ bool FireUnit::OnEvent(const SEvent& e)
 
         if (e.JoystickEvent.IsButtonPressed(2))
         {
-            // sec trigger pressed
+            if (!reloading)
+            {
+                reloadUntil = Globals::getDevice()->getTimer()->getRealTime() + 15000;
+                reloading = true;
+            }
         }
         else
         {
@@ -128,6 +128,16 @@ bool FireUnit::OnEvent(const SEvent& e)
     return false;
 }
 
+u32 FireUnit::getRoundsRemaining() const
+{
+    return stripsRemaining * 16 + fireCount;
+}
+
+bool FireUnit::isReloading() const
+{
+    return reloading;
+}
+
 
 void FireUnit::draw()
 {
@@ -146,11 +156,17 @@ void FireUnit::draw()
     matA.MaterialType = video::EMT_TRANSPARENT_ALPHA_CHANNEL;
     drv->setMaterial(matA);
 
-    if (flashCount > 0)
+    if (fireCount > 0)
     {
-        mflashL->setVisible(flashCount % 4 == 2);
-        mflashR->setVisible(flashCount % 4 == 0);
-        flashCount--;
+        shotline.start = cam->getAbsolutePosition();
+        shotline.end = cam->getTarget() - shotline.start;
+        shotline.end.normalize();
+        shotline.end *= 4000.f;
+        Globals::getDispatcher()->evalShot(shotline);
+
+        mflashL->setVisible(fireCount % 4 == 2);
+        mflashR->setVisible(fireCount % 4 == 0);
+        fireCount--;
     }
     else
     {
@@ -158,6 +174,14 @@ void FireUnit::draw()
         mflashR->setVisible(false);
     }
 
+    if (reloading)
+    {
+        if (Globals::getDevice()->getTimer()->getRealTime() > reloadUntil)
+        {
+            reloading = false;
+            stripsRemaining = 5;
+        }
+    }
     //drv->draw3DLine(shotline.start, shotline.end);
     //cout << tgt.X << ' ' << tgt.Y << ' ' << tgt.Z << endl;
 }
