@@ -110,5 +110,7 @@ void FlaSimApp::drawScreenSpace()
         info += L"[RELOADING]";
     else
         info += fireUnit.getRoundsRemaining();
+    info += L"\nAIRCFT REMAIN: "; info += Globals::getDispatcher()->getAircraftsRemaining();
+    info += L"\nPOINTS: "; info += Globals::getDispatcher()->getPoints();
     Globals::getFont()->draw(info, core::recti(10, 10, 100, 100), video::SColor(255, 255, 255, 255));
 }

@@ -10,7 +10,7 @@ Globals* Globals::instance = nullptr;
 
 Globals::Globals()
 {
-    dev = createDevice(video::EDT_OPENGL, core::dimension2du(1280, 800), 32, false, false, true);
+    dev = createDevice(video::EDT_OPENGL, core::dimension2du(1600, 900), 32, false, false, true);
     drv = dev->getVideoDriver();
     sman = dev->getSceneManager();
     dispatcher = new Dispatcher();

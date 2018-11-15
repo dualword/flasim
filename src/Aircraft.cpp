@@ -86,3 +86,8 @@ void Aircraft::update(u32 curMS)
         flybySound->move(cAudio::cVector3(p.X, p.Y, p.Z));
     }
 }
+
+vector3df Aircraft::getPosition() const
+{
+    return model->getAbsolutePosition();
+}

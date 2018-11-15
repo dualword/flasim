@@ -15,6 +15,7 @@ public:
     bool isGood() const;
     bool isTerminated() const;
     void update(irr::u32 curMS);
+    irr::core::vector3df getPosition() const;
 
 private:
     Aircraft();

@@ -7,6 +7,8 @@ using namespace irr::core;
 
 Dispatcher::Dispatcher()
     : active(false)
+    , aircraftsRemaining(0)
+    , points(0)
 {
 
 }
@@ -20,16 +22,26 @@ void Dispatcher::start()
 {
     lastDispatchMS = Globals::getDevice()->getTimer()->getRealTime();
     active = true;
+    aircraftsRemaining = 5;
+    points = 0;
 }
 
 void Dispatcher::execute()
 {
     u32 curTime = Globals::getDevice()->getTimer()->getRealTime();
 
-    if (active && (curTime - lastDispatchMS) > 10000)
+    if (active && (curTime - lastDispatchMS) > 45000)
     {
-        dispatchAircraft();
-        lastDispatchMS = curTime;
+        if (aircraftsRemaining > 0)
+        {
+            dispatchAircraft();
+            aircraftsRemaining--;
+            lastDispatchMS = curTime;
+        }
+        else
+        {
+            stop();
+        }
     }
 
     // loopdidoo & cleanup
@@ -48,6 +60,7 @@ void Dispatcher::execute()
 
 void Dispatcher::stop()
 {
+    aircrafts.clear();
     active = false;
 }
 
@@ -61,13 +74,24 @@ bool Dispatcher::evalShot(const core::line3df& l)
     bool ret = false;
     for (auto a : aircrafts)
     {
-        if (a->evalShot(l))
+        if (a->isGood() && a->evalShot(l))
         {
+            points += 1000 + a->getPosition().getDistanceFrom(vector3df(0.f, 0.f, 0.f));
             ret = true;
         }
     }
 
     return ret;
+}
+
+u32 Dispatcher::getAircraftsRemaining() const
+{
+    return aircraftsRemaining;
+}
+
+u32 Dispatcher::getPoints() const
+{
+    return points;
 }
 
 void Dispatcher::dispatchAircraft()
