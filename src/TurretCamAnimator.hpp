@@ -1,5 +1,6 @@
 #include <irrlicht.h>
 
+//! Super simple scene node animator that makes the camera look along the cannon
 class TurretCamAnimator : public irr::scene::ISceneNodeAnimator
 {
 public:

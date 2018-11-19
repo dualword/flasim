@@ -3,6 +3,7 @@
 
 #include <irrlicht.h>
 
+//! Spawns aircraft, conducts hit-testing and points counting
 class Dispatcher
 {
 public:

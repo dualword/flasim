@@ -1,5 +1,6 @@
 #include "FireUnit.hpp"
 
+//! Main app class
 class FlaSimApp : public irr::IEventReceiver
 {
 public:

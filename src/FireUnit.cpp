@@ -42,7 +42,7 @@ FireUnit::FireUnit()
     mflashR->setVisible(false);
 
     fireSound = Globals::getAudioManager()->create("fireSound", "../res/gunburst.wav", false);
-
+    screenSize = Globals::getVideoDriver()->getScreenSize();
 }
 
 FireUnit::~FireUnit()
@@ -143,6 +143,11 @@ void FireUnit::draw()
 {
     auto drv = Globals::getVideoDriver();
     auto& res = drv->getScreenSize();
+    if (screenSize != res)
+    {
+        screenSize = res;
+        cam->setAspectRatio(static_cast<f32>(res.Width) / static_cast<f32>(res.Height));
+    }
 
     drv->draw2DImage(crosshair, position2di(res.Width / 2 - 128, res.Height / 2 - 128), recti(0, 0, 256, 256), nullptr, video::SColor(255,255,255,255), true );
 
@@ -182,6 +187,4 @@ void FireUnit::draw()
             stripsRemaining = 5;
         }
     }
-    //drv->draw3DLine(shotline.start, shotline.end);
-    //cout << tgt.X << ' ' << tgt.Y << ' ' << tgt.Z << endl;
 }

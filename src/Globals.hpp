@@ -24,7 +24,7 @@ namespace irr
     }
 }
 
-
+//! Globally used stuff (mostly irrlicht-related) packed in a singleton
 class Globals
 {
 public:

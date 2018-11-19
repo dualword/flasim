@@ -20,7 +20,7 @@ Dispatcher::~Dispatcher()
 
 void Dispatcher::start()
 {
-    lastDispatchMS = Globals::getDevice()->getTimer()->getRealTime();
+    lastDispatchMS = Globals::getDevice()->getTimer()->getRealTime() - 40000;
     active = true;
     aircraftsRemaining = 5;
     points = 0;
@@ -112,5 +112,5 @@ void Dispatcher::dispatchAircraft()
     line3df l;
     l.start = vector3df(start.X, alt, start.Y);
     l.end = vector3df(end.X, alt, end.Y);
-    aircrafts.push_back(std::make_shared<Aircraft>(l, 30000 + static_cast<u32>(rand->frand() * 30000.f)));
+    aircrafts.push_back(std::make_shared<Aircraft>(l, 30000 + static_cast<u32>(rand->frand() * 15000.f)));
 }

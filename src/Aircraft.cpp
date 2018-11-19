@@ -57,7 +57,13 @@ bool Aircraft::evalShot(const irr::core::line3df &shotline)
         {
             // got hit for the first time: do smokey?
             auto pman = Globals::getSceneManager()->addParticleSystemSceneNode(true, model);
+            pman->getEmitter()->setMinStartSize(dimension2df(80.f, 80.f));
+            pman->getEmitter()->setMaxStartSize(dimension2df(120.f, 120.f));
             pman->getEmitter()->setDirection(vector3df(0.f, 0.f, 0.f));
+            pman->setMaterialTexture(0, Globals::getVideoDriver()->getTexture("../res/smoke.png"));
+            pman->setMaterialTexture(1, Globals::getVideoDriver()->getTexture("../res/smoke1.png"));
+            pman->setMaterialType(video::EMT_TRANSPARENT_ALPHA_CHANNEL_REF);
+            pman->setMaterialFlag(video::EMF_LIGHTING, false);
         }
 
         healthy = false;

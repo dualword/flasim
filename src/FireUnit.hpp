@@ -8,6 +8,7 @@ namespace cAudio
 class IAudioSource;
 }
 
+//! Cannon control, input handling
 class FireUnit : public irr::IEventReceiver
 {
 public:
@@ -35,6 +36,7 @@ private:
     irr::u32 reloadUntil;
 
     class cAudio::IAudioSource* fireSound;
+    irr::core::dimension2du screenSize;
 };
 
 #endif // FIREUNIT_HPP

@@ -5,6 +5,7 @@ namespace cAudio
 class IAudioSource;
 }
 
+//! Sends an aircraft along a line in a given time. Handles hits and smoke - that all
 class Aircraft
 {
 public:

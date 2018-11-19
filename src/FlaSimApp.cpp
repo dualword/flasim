@@ -42,8 +42,6 @@ FlaSimApp::FlaSimApp()
     {
         cout << "Joystick support is enabled and " << joystickInfo.size() << " joystick(s) are present." << endl;
     }
-
-
 }
 
 FlaSimApp::~FlaSimApp()
