@@ -13,6 +13,7 @@ public:
 
 private:
     void drawScreenSpace();
+    void saveScreenshot();
 
     irr::IrrlichtDevice *dev;
     irr::scene::ISceneManager *sman;

@@ -6,9 +6,10 @@ Debug:TARGET = flasimD
 TEMPLATE = app
 
 unix:INCLUDEPATH += /usr/include/irrlicht
-win32:INCLUDEPATH += ../pharus/external/irrlicht
+INCLUDEPATH += ../ext/cAudio/cAudio/include ../ext/cAudio/include
 
-unix:LIBS += -lIrrlicht -lcAudio
+unix:LIBS += -L../ext/cAudio/cAudio
+unix:LIBS += -lIrrlicht -lopenal -lcAudio
 
 DESTDIR = ../bin
 

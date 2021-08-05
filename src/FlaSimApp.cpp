@@ -64,7 +64,7 @@ void FlaSimApp::execute()
 
 bool FlaSimApp::OnEvent(const irr::SEvent &e)
 {
-    if (e.EventType == EET_KEY_INPUT_EVENT)
+    if (e.EventType == EET_KEY_INPUT_EVENT && e.KeyInput.PressedDown)
     {
         if (e.KeyInput.Key == KEY_F12)
         {
@@ -81,7 +81,14 @@ bool FlaSimApp::OnEvent(const irr::SEvent &e)
             Globals::getDispatcher()->stop();
             return true;
         }
+        if (e.KeyInput.Key == KEY_KEY_T)
+        {
+            saveScreenshot();
+            return true;
+        }
     }
+
+    // if we reach here, relay event to the fireunit
     return fireUnit.OnEvent(e);
 }
 
@@ -111,4 +118,17 @@ void FlaSimApp::drawScreenSpace()
     info += L"\nAIRCFT REMAIN: "; info += Globals::getDispatcher()->getAircraftsRemaining();
     info += L"\nPOINTS: "; info += Globals::getDispatcher()->getPoints();
     Globals::getFont()->draw(info, core::recti(10, 10, 100, 100), video::SColor(255, 255, 255, 255));
+}
+
+void FlaSimApp::saveScreenshot()
+{
+    video::IImage* scrn = nullptr;
+    core::stringc fname = "";
+    fname += dev->getTimer()->getRealTime();
+    io::path filename = fname.c_str();
+    filename += ".png";
+
+    scrn = drv->createScreenShot();
+    drv->writeImageToFile(scrn, filename);
+    scrn->drop();
 }

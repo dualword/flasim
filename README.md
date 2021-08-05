@@ -1,6 +1,6 @@
 # flasim
 
-FlaSim is a mini game I did as a birthday party gag. It lets you manually control an anti-aircraft cannon with your joystick. Five jets are then randomly spawned (one after the other) as targets to be engaged by the player.
+FlaSim is a mini game I did as a birthday party gag. It lets you manually control an anti-aircraft cannon with your joystick. Five jets are then randomly spawned (one after the other) as targets to be engaged by the player. There is a [blog post](https://polylux.eu/blog/4/) about the implementation aspects of the game.
 
 ## Controls
 
@@ -15,7 +15,19 @@ About the visual content shown in the game: I did some parts myself (cannon mode
 ## Building flasim
 
 Currently only Linux works, should have a windows buildability in a couple of days.
-The game is written in QtCreator and hence uses the qmake build system. You should have gcc, qmake, irrlicht and cAudio installed and handy.
-cd to the 'prj' folder and run qmake to get a Makefile out of flasim.pro. Build the game using 'make'. Done.
+The game is written in QtCreator and hence uses the qmake build system. You should have gcc, qmake, irrlicht and OpenAL installed and handy.
+
+### Prerequirements
+
+1. Fetch the submodules.
+1. `cd` into `ext/cAudio` and issue `cmake -DCAUDIO_BUILD_EAX_PLUGIN=ON -DCAUDIO_BUILD_MP3DECODER_PLUGIN=OFF -DCAUDIO_ENABLE_OGG=OFF -DCAUDIO_BUILD_SAMPLES=OFF -DCAUDIO_DEPENDENCIES_DIR=Dependencies64 -DCAUDIO_STATIC=ON`
+1. `make` cAudio
+
+### Build flasim
+
+`cd` to the `prj` folder and run qmake to get a Makefile out of `flasim.pro`. Build the game using `make`. Done.
 
 Questions? Reach me at otto@socialnerds.org
+
+
+

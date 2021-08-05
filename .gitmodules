@@ -1,0 +1,3 @@
+[submodule "ext/cAudio"]
+	path = ext/cAudio
+	url = https://github.com/R4stl1n/cAudio.git

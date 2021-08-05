@@ -7,7 +7,7 @@
 class Dispatcher
 {
 public:
-    typedef std::vector< std::shared_ptr<class Aircraft> > Aircrafts;
+    typedef std::vector< std::unique_ptr<class Aircraft> > Aircrafts;
     Dispatcher();
     ~Dispatcher();
 

@@ -2,7 +2,7 @@
 
 #include "Dispatcher.hpp"
 #include <irrlicht.h>
-#include <cAudio/cAudio.h>
+#include <cAudio.h>
 
 using namespace irr;
 

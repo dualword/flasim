@@ -1,7 +1,7 @@
 #include "FireUnit.hpp"
 
 #include <iostream>
-#include <cAudio/cAudio.h>
+#include <cAudio.h>
 
 #include "Globals.hpp"
 #include "Dispatcher.hpp"

@@ -72,7 +72,7 @@ const Dispatcher::Aircrafts &Dispatcher::getAircrafts() const
 bool Dispatcher::evalShot(const core::line3df& l)
 {
     bool ret = false;
-    for (auto a : aircrafts)
+    for (auto& a : aircrafts)
     {
         if (a->isGood() && a->evalShot(l))
         {
@@ -112,5 +112,5 @@ void Dispatcher::dispatchAircraft()
     line3df l;
     l.start = vector3df(start.X, alt, start.Y);
     l.end = vector3df(end.X, alt, end.Y);
-    aircrafts.push_back(std::make_shared<Aircraft>(l, 30000 + static_cast<u32>(rand->frand() * 15000.f)));
+    aircrafts.push_back(std::make_unique<Aircraft>(l, 30000 + static_cast<u32>(rand->frand() * 15000.f)));
 }
