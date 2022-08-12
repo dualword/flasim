@@ -14,18 +14,13 @@ About the visual content shown in the game: I did some parts myself (cannon mode
 
 ## Building flasim
 
-Currently only Linux works, should have a windows buildability in a couple of days.
-The game is written in QtCreator and hence uses the qmake build system. You should have gcc, qmake, irrlicht and OpenAL installed and handy.
-
-### Prerequirements
+Currently only *Linux* works, should have a Windows buildability *in a couple of days* (yea, sure).
+The game uses the CMake build system. Make sure you have GCC, Irrlicht and OpenAL available on your system.
 
 1. Fetch the submodules.
-1. `cd` into `ext/cAudio` and issue `cmake -DCAUDIO_BUILD_EAX_PLUGIN=ON -DCAUDIO_BUILD_MP3DECODER_PLUGIN=OFF -DCAUDIO_ENABLE_OGG=OFF -DCAUDIO_BUILD_SAMPLES=OFF -DCAUDIO_DEPENDENCIES_DIR=Dependencies64 -DCAUDIO_STATIC=ON`
-1. `make` cAudio
+1. Very recent versions of CMake have issues with the dated config in *cAudio*. If it complains about *flasim* not being defined inside *cAudio* open `ext/cAudio/CMakeLists.txt` and head to line 29 and 30. Replace `${CMAKE_PROJECT_NAME}` by the word `cAudio`.
+1. CMake & build *flasim*
 
-### Build flasim
-
-`cd` to the `prj` folder and run qmake to get a Makefile out of `flasim.pro`. Build the game using `make`. Done.
 
 Questions? Reach me at otto@socialnerds.org
 
