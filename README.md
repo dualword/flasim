@@ -18,7 +18,7 @@ Currently only *Linux* works, should have a Windows buildability *in a couple of
 The game uses the CMake build system. Make sure you have GCC, Irrlicht and OpenAL available on your system.
 
 1. Fetch the submodules.
-1. Open `ext/cAudio/CMakeLists.txt` and head to line 29 and 30. Replace `${CMAKE_PROJECT_NAME}` by the word `cAudio`.
+1. Very recent versions of CMake have issues with the dated config in *cAudio*. If it complains about *flasim* not being defined inside *cAudio* open `ext/cAudio/CMakeLists.txt` and head to line 29 and 30. Replace `${CMAKE_PROJECT_NAME}` by the word `cAudio`.
 1. CMake & build *flasim*
 
 
