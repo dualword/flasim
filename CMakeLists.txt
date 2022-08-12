@@ -21,7 +21,7 @@ option(CAUDIO_STATIC on)
 set(CAUDIO_TARGET cAudio)
 set(CAUDIO_DIR ${FS_EXT_DIR}/cAudio)
 set(CAUDIO_INC_DIR ${FS_EXT_DIR}/cAudio/cAudio/include)
-add_subdirectory(${CAUDIO_DIR})
+add_subdirectory(${CAUDIO_DIR} EXCLUDE_FROM_ALL)
 
 
 #irrlicht stuff
@@ -47,11 +47,10 @@ add_executable(flasim
     )
 
 target_include_directories(${FS_TARGET} PRIVATE ${IRRLICHT_INC_DIR} ${CAUDIO_INC_DIR} ${CMAKE_BINARY_DIR}/include) #last is needed for caudio
-    
-target_link_libraries(${FS_TARGET}
-    ${IRRLICHT_TARGET}
-    )
 
+if(UNIX)    # relocatable linking for unixoids
+    set_target_properties(flasim PROPERTIES LINK_FLAGS "-Wl,-rpath,$ORIGIN/")
+endif()
 
 target_link_libraries(${FS_TARGET} ${CAUDIO_TARGET} ${IRRLICHT_TARGET})
 
