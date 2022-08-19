@@ -1,4 +1,4 @@
-# cmake for tes, ottona, 2022-03-09
+# cmake for flasim, ottona, 2022-03-09
 
 
 cmake_minimum_required(VERSION 3.10)
@@ -6,6 +6,11 @@ cmake_minimum_required(VERSION 3.10)
 set(FS_TARGET flasim)
 
 set(CMAKE_CXX_STANDARD 17)
+if (WIN32) # unfortunately necessary due to caudio's incompatibility with c++17 on win
+    set(CMAKE_CXX_STANDARD 11)
+endif()
+
+
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_LIST_DIR}/lib")
@@ -25,7 +30,9 @@ add_subdirectory(${CAUDIO_DIR} EXCLUDE_FROM_ALL)
 
 
 #irrlicht stuff
-set(IRRLICHT_INC_DIR /usr/include/irrlicht)
+if (UNIX)
+	set(IRRLICHT_INC_DIR /usr/include/irrlicht)
+endif()
 set(IRRLICHT_TARGET Irrlicht)
 
 project(${FS_TARGET})
@@ -51,6 +58,8 @@ target_include_directories(${FS_TARGET} PRIVATE ${IRRLICHT_INC_DIR} ${CAUDIO_INC
 if(UNIX)    # relocatable linking for unixoids
     set_target_properties(flasim PROPERTIES LINK_FLAGS "-Wl,-rpath,$ORIGIN/")
 endif()
+
+target_link_directories(${FS_TARGET} PRIVATE ${IRRLICHT_LIB_DIR})
 
 target_link_libraries(${FS_TARGET} ${CAUDIO_TARGET} ${IRRLICHT_TARGET})
 
