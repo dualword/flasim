@@ -1,9 +1,6 @@
+//flasim-mod https://github.com/dualword/flasim
 #include <irrlicht.h>
-
-namespace cAudio
-{
-class IAudioSource;
-}
+#include <SFML/Audio.hpp>
 
 //! Sends an aircraft along a line in a given time. Handles hits and smoke - that all
 class Aircraft
@@ -23,6 +20,7 @@ private:
     irr::scene::IMeshSceneNode *model;
     irr::scene::ISceneNodeAnimator *a;
     bool healthy;
-    class cAudio::IAudioSource* flybySound;
+    sf::SoundBuffer buf;
+    sf::Sound flybySound;
     irr::u32 flightDuration, flightStarted;
 };

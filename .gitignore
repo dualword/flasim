@@ -1,0 +1,15 @@
+#
+/.build/
+/flasim
+/ext
+/ext/cAudio
+/bin
+/bin/flasim
+/Makefile
+.qmake.stash
+
+#
+/.cproject
+/.project
+/.externalToolBuilders
+/.settings

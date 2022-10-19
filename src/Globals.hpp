@@ -1,10 +1,6 @@
+//flasim-mod https://github.com/dualword/flasim
 #ifndef GLOBALS_HPP
 #define GLOBALS_HPP
-
-namespace cAudio
-{
-    class IAudioManager;
-}
 
 namespace irr
 {
@@ -31,7 +27,6 @@ public:
     static class irr::IrrlichtDevice* getDevice();
     static class irr::scene::ISceneManager* getSceneManager();
     static class irr::video::IVideoDriver* getVideoDriver();
-    static cAudio::IAudioManager* getAudioManager();
     static class Dispatcher* getDispatcher();
     static class irr::gui::IGUIFont *getFont();
 
@@ -45,7 +40,6 @@ private:
     class irr::IrrlichtDevice* dev;
     class irr::scene::ISceneManager* sman;
     class irr::video::IVideoDriver* drv;
-    class cAudio::IAudioManager *audioManager;
     class Dispatcher *dispatcher;
     class irr::gui::IGUIFont *font;
 };

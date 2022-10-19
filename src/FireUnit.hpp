@@ -1,12 +1,9 @@
+//flasim-mod https://github.com/dualword/flasim
 #ifndef FIREUNIT_HPP
 #define FIREUNIT_HPP
 
 #include <irrlicht.h>
-
-namespace cAudio
-{
-class IAudioSource;
-}
+#include <SFML/Audio.hpp>
 
 //! Cannon control, input handling
 class FireUnit : public irr::IEventReceiver
@@ -35,7 +32,8 @@ private:
     bool reloading;
     irr::u32 reloadUntil;
 
-    class cAudio::IAudioSource* fireSound;
+    sf::SoundBuffer buf;
+    sf::Sound fireSound;
     irr::core::dimension2du screenSize;
 };
 

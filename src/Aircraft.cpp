@@ -1,7 +1,7 @@
+//flasim-mod https://github.com/dualword/flasim
 #include "Aircraft.hpp"
 
 #include <iostream>
-#include <cAudio.h>
 #include "Globals.hpp"
 
 
@@ -27,7 +27,9 @@ Aircraft::Aircraft(const line3df &flightLine, u32 flightTimeMillis)
     model->setRotation(vector3df(0.f, -rotBy, 0.f));
 
     model->addAnimator(a);
-    flybySound = Globals::getAudioManager()->create("flybySound", "../res/flyby.wav", false);
+
+    buf.loadFromFile("../res/flyby.wav");
+    flybySound.setBuffer(buf);
     //std::cout << "Aircraft from " << flightTimeMillis << ' ' << flightLine.start.Y << " to " << flightLine.end.X << ' ' << flightLine.end.Y << " at " << flightLine.start.Z << std::endl;
 }
 
@@ -73,7 +75,7 @@ bool Aircraft::evalShot(const irr::core::line3df &shotline)
 
 void Aircraft::update(u32 curMS)
 {
-    if (!flybySound->isPlaying())
+    if (flybySound.getStatus() != sf::SoundSource::Status::Playing)
     {
 
         u32 curTime = curMS;
@@ -81,7 +83,8 @@ void Aircraft::update(u32 curMS)
         if (curTime > flightDuration / 2 - 4000 && curTime < flightDuration / 2)
         {
             auto p = model->getAbsolutePosition();
-            flybySound->play3d(cAudio::cVector3(p.X, p.Y, p.Z));
+            flybySound.setPosition(p.X, p.Y, p.Z);
+            flybySound.play();
             //std::cout << "PLAY!" << std::endl;
            // flybySound->play2d();
         }
@@ -89,7 +92,7 @@ void Aircraft::update(u32 curMS)
     else
     {
         auto p = model->getAbsolutePosition();
-        flybySound->move(cAudio::cVector3(p.X, p.Y, p.Z));
+            flybySound.setPosition(p.X, p.Y, p.Z);
     }
 }
 

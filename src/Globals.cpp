@@ -1,8 +1,8 @@
+//flasim-mod https://github.com/dualword/flasim
 #include "Globals.hpp"
 
 #include "Dispatcher.hpp"
 #include <irrlicht.h>
-#include <cAudio.h>
 
 using namespace irr;
 
@@ -15,14 +15,12 @@ Globals::Globals()
     drv = dev->getVideoDriver();
     sman = dev->getSceneManager();
     dispatcher = new Dispatcher();
-    audioManager = cAudio::createAudioManager(true);
     font = dev->getGUIEnvironment()->getFont("../res/fontlucida.png");
 }
 
 Globals::~Globals()
 {
     dev->drop();
-    audioManager->shutDown();
     instance = nullptr;
 }
 
@@ -54,14 +52,6 @@ scene::ISceneManager* Globals::getSceneManager()
         instance = new Globals();
 
     return instance->sman;
-}
-
-cAudio::IAudioManager* Globals::getAudioManager()
-{
-    if (!instance)
-        instance = new Globals();
-
-    return instance->audioManager;
 }
 
 Dispatcher* Globals::getDispatcher()

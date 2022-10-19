@@ -1,7 +1,7 @@
+//flasim-mod https://github.com/dualword/flasim
 #include "FireUnit.hpp"
 
 #include <iostream>
-#include <cAudio.h>
 
 #include "Globals.hpp"
 #include "Dispatcher.hpp"
@@ -40,8 +40,9 @@ FireUnit::FireUnit()
     mflashL->setMaterialFlag(video::EMF_LIGHTING, false);
     mflashL->setVisible(false);
     mflashR->setVisible(false);
-
-    fireSound = Globals::getAudioManager()->create("fireSound", "../res/gunburst.wav", false);
+    buf.loadFromFile("../res/gunburst.wav");
+    fireSound.setBuffer(buf);
+    fireSound.setRelativeToListener(true);
     screenSize = Globals::getVideoDriver()->getScreenSize();
 }
 
@@ -53,7 +54,7 @@ FireUnit::~FireUnit()
 
 bool FireUnit::OnEvent(const SEvent& e)
 {
-    if (e.EventType == irr::EET_JOYSTICK_INPUT_EVENT)
+    if (e.EventType == (irr::EET_JOYSTICK_INPUT_EVENT || EET_MOUSE_INPUT_EVENT))
     {
         f32 aziTurnCoeff = 0.f, elevTurnCoeff = 0.f;
         const f32 DEAD_ZONE = 0.0100000f;
@@ -69,13 +70,13 @@ bool FireUnit::OnEvent(const SEvent& e)
         if (fabs(aziTurnCoeff) < DEAD_ZONE)
             aziTurnCoeff = 0.f;
 
-        if (e.JoystickEvent.IsButtonPressed(0))
+        if (e.JoystickEvent.IsButtonPressed(0) || e.MouseInput.isLeftPressed())
         {
             if (!fireBtnPressed)
             {
                 if (!reloading && stripsRemaining > 0 && fireCount == 0)
                 {
-                    fireSound->play2d();
+                    fireSound.play();
                     fireCount = 16;
                     stripsRemaining--;
                 }
@@ -87,7 +88,7 @@ bool FireUnit::OnEvent(const SEvent& e)
             fireBtnPressed = false;
         }
 
-        if (e.JoystickEvent.IsButtonPressed(2))
+        if (e.JoystickEvent.IsButtonPressed(2) || e.MouseInput.isRightPressed())
         {
             if (!reloading)
             {
