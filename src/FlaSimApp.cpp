@@ -1,3 +1,4 @@
+//flasim-mod https://github.com/dualword/flasim
 #include "FlaSimApp.hpp"
 
 #include <iostream>
@@ -110,14 +111,17 @@ void FlaSimApp::drawScreenSpace()
     drv->draw3DLine(vector3df(0.f, 0.f, 0.f), vector3df(0.f, 1.f, 0.f), video::SColor(255, 0, 255, 0));
     drv->draw3DLine(vector3df(0.f, 0.f, 0.f), vector3df(0.f, 0.f, 1.f), video::SColor(255, 0, 0, 255));
 
-    core::stringw info = L"RNDS REMAIN: ";
+    std::string fps = std::to_string(drv->getFPS());
+    core::stringw info = L"FPS: ";
+    info.append(fps.c_str());
+    info += L"\nRNDS REMAIN: ";
     if (fireUnit.isReloading())
         info += L"[RELOADING]";
     else
         info += fireUnit.getRoundsRemaining();
     info += L"\nAIRCFT REMAIN: "; info += Globals::getDispatcher()->getAircraftsRemaining();
     info += L"\nPOINTS: "; info += Globals::getDispatcher()->getPoints();
-    Globals::getFont()->draw(info, core::recti(10, 10, 100, 100), video::SColor(255, 255, 255, 255));
+    Globals::getFont()->draw(info.c_str(), core::recti(10, 10, 100, 200), video::SColor(255, 255, 255, 255));
 }
 
 void FlaSimApp::saveScreenshot()
